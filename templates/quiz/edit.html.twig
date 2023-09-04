@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}Create new Quiz!
+{% endblock %}
+
+{% block body %}
+	{# templates/quiz/edit.html.twig #}
+	{{ form_start(form) }}
+	{{ form_errors(form) }}
+
+	{{ form_row(form.name) }}
+	{{ form_row(form.description) }}
+
+	<button type="submit">Enregistrer</button>
+
+	{{ form_end(form) }}
+
+{% endblock %}
+

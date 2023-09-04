@@ -1,0 +1,45 @@
+	{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Tableau de Bord</h1>
+<a href=" {{ path('app_quiz_new') }} " class="btn btn-primary">Créer un Quiz</a>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Intitulé</th>
+				<th>Description</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			{% for quiz in quizList %}
+
+				<tr class="{{ cycle(['even', 'odd'], loop.index) }}"></tr>
+
+				<td>{{ quiz.name }}</td>
+				<td>{{ quiz.description }}</td>
+				<td>
+					<a href="#" class="btn btn-primary">
+						<i class="fas fa-play"></i>
+						Lire
+					</a>
+
+					<a 
+						href="{{ path('app_quiz_edit', {'id': quiz.id}) }}"
+						class="btn btn-warning">
+							<i class="fas fa-edit"></i>
+							Modifier
+					</a>
+<a href="{{ path('app_quiz_delete', {'id': quiz.id}) }}" class="btn btn-danger">
+
+						<i class="fas fa-trash"></i>
+						Supprimer
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>{% endblock %}
+

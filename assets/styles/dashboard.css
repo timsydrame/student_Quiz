@@ -1,0 +1,57 @@
+/* Style du tableau */
+.btn.btn-primary {
+    border: 1px solid blue;
+    margin-bottom: 40px;
+    font-size: 1.7rem;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    /* Bordure autour du tableau */
+}
+
+/* Style de l'en-tête */
+thead {
+    background-color: #f2f2f2;
+    /* Couleur de fond de l'en-tête */
+}
+
+thead th {
+    padding: 8px;
+    /* Espacement interne des cellules de l'en-tête */
+    text-align: left;
+    /* Alignement du texte à gauche dans l'en-tête */
+    border-bottom: 2px solid #333;
+    /* Bordure en bas de l'en-tête */
+}
+.btn {
+    font-size: 1.7rem;
+    /* Taille de police pour tous les boutons */
+}
+
+/* Style des lignes du tableau */
+tbody tr {
+    background-color: #ffffff;
+    /* Couleur de fond des lignes */
+}
+
+tbody tr.even {
+    background-color: #f2f2f2;
+    /* Couleur de fond des lignes paires */
+}
+
+tbody td {
+    padding: 8px;
+    /* Espacement interne des cellules du corps du tableau */
+    text-align: left;
+    /* Alignement du texte à gauche dans le corps du tableau */
+    border-bottom: 1px solid #ccc;
+    /* Bordure en bas des cellules du corps du tableau */
+}
+
+/* Style des boutons d'action */
+.btn {
+    margin-right: 5px;
+    /* Espacement entre les boutons */
+}

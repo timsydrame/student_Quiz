@@ -1,0 +1,129 @@
+body {
+    background: linear-gradient(to bottom, #d0e7f1, #9fc3e7, #8080e9);
+    height: 100vh;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    color: black;
+    border: 1px solid rgb(123, 96, 221);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 100px;
+    margin-left: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.menu {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.menu li  {
+    margin: 0 15px;
+    border: 2px solid rgb(130, 110, 212);
+    padding: 10px;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    transition: opacity 0.3s;
+    font-size: 25px;
+    transition: transform 0.3s ease-in-out;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.menu li:hover {
+    background-color: #6222e2;
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.menu li:not(:last-child) {
+    margin-right: 10px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+}
+
+button.burger {
+    display: none;
+}
+
+.menu-mobile {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #3c409d;
+    padding: 10px;
+    border: 2px solid rgb(114, 119, 219);
+    border-top: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Styles spécifiques à la version mobile */
+    .menu {
+        display: none;
+    }
+
+    button.burger {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        margin-right: 8px;
+        box-sizing: border-box;
+
+    }
+
+    .burger i {
+        font-size: 40px;
+    }
+
+    .menu-mobile.active {
+        display: flex;
+    }
+
+    .menu-mobile {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-mobile li {
+        margin: 10px 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    /* Styles spécifiques à la version desktop */
+    .menu-mobile {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
