@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block title %}Create new Question!
+{% endblock %}
+
+{% block body %}
+    {# templates/question/new.html.twig #}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.enonce) }}
+    {{ form_row(form.quiz) }}
+    <button type="submit">Enregistrer</button>
+
+    {{ form_end(form) }}
+
+{% endblock %}

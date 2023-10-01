@@ -1,19 +1,23 @@
 /* Style du tableau */
 .btn.btn-primary {
-    border: 1px solid blue;
+    border: 5px solid rgb(88, 23, 174);
     margin-bottom: 40px;
     font-size: 1.7rem;
+    width: 15%;
+    height: 40px;
+    background-color: rgb(139, 132, 190);;
 }
 table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
     /* Bordure autour du tableau */
+    margin-top: 16px;
 }
 
 /* Style de l'en-tête */
 thead {
-    background-color: #f2f2f2;
+    background-color: #ede2e2;
     /* Couleur de fond de l'en-tête */
 }
 
@@ -24,6 +28,7 @@ thead th {
     /* Alignement du texte à gauche dans l'en-tête */
     border-bottom: 2px solid #333;
     /* Bordure en bas de l'en-tête */
+    font-size: 34px;
 }
 .btn {
     font-size: 1.7rem;
@@ -31,14 +36,15 @@ thead th {
 }
 
 /* Style des lignes du tableau */
-tbody tr {
-    background-color: #ffffff;
-    /* Couleur de fond des lignes */
-}
+
 
 tbody tr.even {
-    background-color: #f2f2f2;
+    background-color: #d6c7c7;
     /* Couleur de fond des lignes paires */
+}
+/* Style des lignes impaires */
+tbody tr.odd {
+    background-color:rgb(139, 132, 190);
 }
 
 tbody td {
@@ -46,12 +52,14 @@ tbody td {
     /* Espacement interne des cellules du corps du tableau */
     text-align: left;
     /* Alignement du texte à gauche dans le corps du tableau */
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #afaeae;
     /* Bordure en bas des cellules du corps du tableau */
+    font-size: 1.5rem;
 }
 
 /* Style des boutons d'action */
 .btn {
-    margin-right: 5px;
+    margin-right: 50px;
     /* Espacement entre les boutons */
+    
 }
