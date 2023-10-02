@@ -92,4 +92,25 @@ class QuestionController extends AbstractController
             'question' => $question, // Tu peux transmettre le quiz à la vue pour afficher les données existantes
         ]);
     }
+
+    // Supression
+    #[Route('/question/delete/{questionId}', name: 'app_question_delete')]
+    public function delete(Request $request, EntityManagerInterface $entityManager, $questionId): Response
+    {
+        // recuperer le quiz dont l'id est passé en parametre
+        $questionRepository = $entityManager->getRepository(Question::class);
+        $question = $questionRepository->find($questionId);
+        if (!$question) {
+            throw $this->createNotFoundException(
+                'Aucun quiz ne correspond à l\'id  ' . $questionId
+            );
+        }
+
+        // supprimer 
+        $entityManager->remove($question);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_quiz_edit', ['id' => $question->getQuiz()->getId()]); // Remplace 'app_quiz' par le nom de la route vers la page de tableau de bord
+
+
+    }
 }
