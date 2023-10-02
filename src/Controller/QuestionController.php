@@ -110,7 +110,5 @@ class QuestionController extends AbstractController
         $entityManager->remove($question);
         $entityManager->flush();
         return $this->redirectToRoute('app_quiz_edit', ['id' => $question->getQuiz()->getId()]); // Remplace 'app_quiz' par le nom de la route vers la page de tableau de bord
-
-
     }
 }
