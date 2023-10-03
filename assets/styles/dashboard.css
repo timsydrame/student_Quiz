@@ -5,7 +5,8 @@
     font-size: 1.7rem;
     width: 15%;
     height: 40px;
-    background-color: rgb(139, 132, 190);;
+    background-color: rgb(139, 132, 190);
+    margin-top: 60px;
 }
 table {
     width: 100%;
@@ -44,7 +45,7 @@ tbody tr.even {
 }
 /* Style des lignes impaires */
 tbody tr.odd {
-    background-color:rgb(139, 132, 190);
+    background-color:rgb(158, 151, 210);
 }
 
 tbody td {
@@ -63,3 +64,62 @@ tbody td {
     /* Espacement entre les boutons */
     
 }
+
+
+
+/* Pour centrer les champs de formulaire individuels */
+form input,
+form select,
+form textarea {
+    display: block;
+    margin: 10px auto;
+    /* Ajustez selon vos besoins */
+}
+
+/* Style générique pour tous les boutons dans les formulaires */
+form button {
+    background-color: #3498db;
+    /* Bleu */
+    color: #141414;
+    /* Texte blanc */
+    padding: 10px 20px;
+    /* Ajustez selon vos besoins */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    
+}
+
+/* Style spécifique pour le bouton de type "submit" */
+form button[type="submit"] {
+    background-color: #7574cc;
+    /* Vert pour le bouton de soumission */
+}
+
+form button:hover {
+    background-color: #1c084a;
+    /* Couleur de survol */
+    transform: translateY(-3px);
+        /* Déplacement vers le haut de 3 pixels */
+        color: #e5cece;
+        /* Couleur du texte au survol */
+}
+
+/* Style pour tous les formulaires */
+.form-container {
+    border: 2px solid #281eb2;
+    padding: 20px;
+    margin: 0 auto;
+    /* Ajout de cette ligne pour centrer horizontalement */
+    margin-bottom: 10px;
+    width: 50%;
+    text-align: center;
+    margin-top: 5px;
+    border-collapse: collapse;
+}
+
+h1{
+    text-align: center;
+}
+

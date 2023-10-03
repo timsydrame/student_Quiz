@@ -3,18 +3,23 @@
 {% endblock %}
 
 {% block body %}
+
+<div class="form-container">
 	{# templates/quiz/edit.html.twig #}
 	{{ form_start(form) }}
 	{{ form_errors(form) }}
+	{{ form_row(form.name, {'label': 'Modifier le nom du quiz ici'}) }}
 
-	{{ form_row(form.name) }}
-	{{ form_row(form.description) }}
+	{{ form_row(form.description, {'label': 'Modifier la description du quiz ici'}) }}
 
 	<button type="submit">Enregistrer</button>
 
 	{{ form_end(form) }}
+</div>
 
-<a href=" {{ path('app_question_new', {'quizId': quiz.id}) }} " class="btn btn-primary">Ajouter une question</a>
+	<h1>liste des questions</h1>
+
+	<a href=" {{ path('app_question_new', {'quizId': quiz.id}) }} " class="btn btn-primary">Ajouter une question</a>
 
 
 	<table class="table">
@@ -42,7 +47,7 @@
 							Modifier
 						</a>
 
-<a href="{{ path('app_question_delete', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-danger">
+						<a href="{{ path('app_question_delete', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-danger">
 
 
 							<i class="fas fa-trash"></i>

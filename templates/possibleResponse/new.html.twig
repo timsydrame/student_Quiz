@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}Create new PossibleResponse!
+{% endblock %}
+
+{% block body %}
+<div class="form-container">
+	{# templates/question/new.html.twig #}
+	{{ form_start(form) }}
+	{{ form_errors(form) }}
+
+	{{ form_row(form.enonce, {'label': 'Entrer une réponse possible'}) }}
+	
+	<button type="submit">Enregistrer</button>
+
+	{{ form_end(form) }}
+</div>
+{% endblock %}
+

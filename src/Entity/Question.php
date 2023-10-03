@@ -29,9 +29,13 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Response::class, orphanRemoval: true)]
     private Collection $responses;
 
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: PossibleResponse::class, orphanRemoval: true)]
+    private Collection $possibleResponses;
+
     public function __construct()
     {
         $this->responses = new ArrayCollection();
+        $this->possibleResponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,5 +107,40 @@ class Question
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, PossibleResponse>
+     */
+    public function getPossibleResponses(): Collection
+    {
+        return $this->possibleResponses;
+    }
+
+    public function addPossibleResponse(PossibleResponse $possibleResponse): static
+    {
+        if (!$this->possibleResponses->contains($possibleResponse)) {
+            $this->possibleResponses->add($possibleResponse);
+            $possibleResponse->setQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removePossibleResponse(PossibleResponse $possibleResponse): static
+    {
+        if ($this->possibleResponses->removeElement($possibleResponse)) {
+            // set the owning side to null (unless already changed)
+            if ($possibleResponse->getQuestion() === $this) {
+                $possibleResponse->setQuestion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getEnonce(); // Ou toute autre propriété qui peut être utilisée comme libellé
     }
 }
