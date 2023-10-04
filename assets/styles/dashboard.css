@@ -1,19 +1,17 @@
 /* Style du tableau */
 .btn.btn-primary {
-    border: 5px solid rgb(88, 23, 174);
+    border: 1px solid rgb(29 47 197);;
     margin-bottom: 40px;
     font-size: 1.7rem;
     width: 15%;
     height: 40px;
     background-color: rgb(139, 132, 190);
-    margin-top: 60px;
+    margin-top: 40px;
 }
 table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
-    /* Bordure autour du tableau */
-    margin-top: 16px;
 }
 
 /* Style de l'en-tête */
@@ -60,7 +58,7 @@ tbody td {
 
 /* Style des boutons d'action */
 .btn {
-    margin-right: 50px;
+    margin-right: 20px;
     /* Espacement entre les boutons */
     
 }

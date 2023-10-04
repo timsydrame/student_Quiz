@@ -4,59 +4,57 @@
 
 {% block body %}
 
-<div class="form-container">
-	{# templates/quiz/edit.html.twig #}
-	{{ form_start(form) }}
-	{{ form_errors(form) }}
-	{{ form_row(form.name, {'label': 'Modifier le nom du quiz ici'}) }}
+	<div
+		class="form-container">
+		{# templates/quiz/edit.html.twig #}
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+		{{ form_row(form.name, {'label': 'Modifier le nom du quiz ici'}) }}
 
-	{{ form_row(form.description, {'label': 'Modifier la description du quiz ici'}) }}
+		{{ form_row(form.description, {'label': 'Modifier la description du quiz ici'}) }}
 
-	<button type="submit">Enregistrer</button>
+		<button type="submit">Enregistrer les modifications</button>
 
-	{{ form_end(form) }}
-</div>
+		{{ form_end(form) }}
+	</div>
 
 	<h1>liste des questions</h1>
 
-	<a href=" {{ path('app_question_new', {'quizId': quiz.id}) }} " class="btn btn-primary">Ajouter une question</a>
-
+	<a href="{{ path('app_question_new', {'quizId': quiz.id}) }}" class="btn btn-primary">
+		<i class="fas fa-book"></i>
+		Ajouter une question
+	</a>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Question</th>				
-				<th>Actions</th>				
+				<th>Question</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for question in quiz.questions %} 
-				<tr class="{{ cycle(['even', 'odd'], loop.index) }}">				
+			{% for question in quiz.questions %}
+				<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
 					<td>{{ question.enonce }}</td>
 					<td>
 						{# <a href="{{ path('app_question', {'questionId': question.id}) }} " class="btn btn-primary"> #}
 						<a href="#" class="btn btn-danger">
-
 							<i class="fas fa-play"></i>
 							Lire
 						</a>
 
 						<a href="{{ path('app_question_edit', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-warning">
-
 							<i class="fas fa-edit"></i>
 							Modifier
 						</a>
 
 						<a href="{{ path('app_question_delete', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-danger">
-
-
 							<i class="fas fa-trash"></i>
 							Supprimer
 						</a>
 					</td>
-				<table/>
-			 {% endfor %}
-
+				</tr>
+			{% endfor %}
 		</tbody>
 	</table>
 
