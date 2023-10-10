@@ -8,16 +8,19 @@
     background-color: rgb(139, 132, 190);
     margin-top: 40px;
 }
+/* Style du tableau */
 table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
+    overflow: auto;
 }
 
 /* Style de l'en-tête */
 thead {
     background-color: #ede2e2;
     /* Couleur de fond de l'en-tête */
+    width: 100%;
 }
 
 thead th {
@@ -25,42 +28,101 @@ thead th {
     /* Espacement interne des cellules de l'en-tête */
     text-align: left;
     /* Alignement du texte à gauche dans l'en-tête */
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid #1d026f;
     /* Bordure en bas de l'en-tête */
-    font-size: 34px;
-}
-.btn {
-    font-size: 1.7rem;
-    /* Taille de police pour tous les boutons */
+    font-size: 1.5rem;
 }
 
 /* Style des lignes du tableau */
+tbody tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #16036c;
+}
 
-
+/* Style des lignes paires */
 tbody tr.even {
     background-color: #d6c7c7;
-    /* Couleur de fond des lignes paires */
 }
-/* Style des lignes impaires */
-tbody tr.odd {
-    background-color:rgb(158, 151, 210);
+/* Style des lignes du tableau */
+tbody tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #16036c;
 }
 
+/* Style des lignes paires */
+tbody tr.even {
+    background-color: #d6c7c7;
+}
+
+/* Style des lignes impaires */
+tbody tr.odd {
+    background-color: rgb(158, 151, 210);
+}
+
+/* Style des cellules du tableau */
+tbody td {
+    padding: 8px;
+    text-align: left;
+    font-size: 1.5rem;
+    width: 100%;
+}
+tbody tr.odd {
+    background-color: rgb(158, 151, 210);
+}
+
+/* Style des cellules du tableau */
+tbody td {
+    padding: 8px;
+    text-align: left;
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+/* Style des boutons d'action */
+.btn {
+    margin-left: 20px;
+    /* Espacement entre les boutons */
+}
+    
+
+
+/* Style des lignes du tableau */
+tbody tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #afaeae;
+    width: 100%;
+        /* Ajout de cette ligne pour occuper 100% de la largeur */
+}
+
+/* Style des lignes paires */
+tbody tr.even {
+    background-color: #d6c7c7;
+}
+
+/* Style des lignes impaires */
+tbody tr.odd {
+    background-color: rgb(158, 151, 210);
+}
+
+/* Style des cellules du tableau */
 tbody td {
     padding: 8px;
     /* Espacement interne des cellules du corps du tableau */
     text-align: left;
     /* Alignement du texte à gauche dans le corps du tableau */
-    border-bottom: 1px solid #afaeae;
-    /* Bordure en bas des cellules du corps du tableau */
     font-size: 1.5rem;
 }
 
 /* Style des boutons d'action */
 .btn {
-    margin-right: 20px;
+    margin-left: 10px;
     /* Espacement entre les boutons */
-    
 }
 
 
@@ -71,53 +133,50 @@ form select,
 form textarea {
     display: block;
     margin: 10px auto;
-    /* Ajustez selon vos besoins */
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #135886;
+    border-radius: 5px;
+    background-color: #f8f9fa;
 }
 
 /* Style générique pour tous les boutons dans les formulaires */
 form button {
-    background-color: #3498db;
-    /* Bleu */
-    color: #141414;
-    /* Texte blanc */
+    background-color: #d6c7c7;
+    color: #3229b8;
     padding: 10px 20px;
-    /* Ajustez selon vos besoins */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    
 }
 
 /* Style spécifique pour le bouton de type "submit" */
 form button[type="submit"] {
-    background-color: #7574cc;
-    /* Vert pour le bouton de soumission */
+    background-color: #ede2e2;
 }
 
 form button:hover {
     background-color: #1c084a;
-    /* Couleur de survol */
     transform: translateY(-3px);
-        /* Déplacement vers le haut de 3 pixels */
-        color: #e5cece;
-        /* Couleur du texte au survol */
 }
 
 /* Style pour tous les formulaires */
 .form-container {
-    border: 2px solid #281eb2;
+    border: 2px solid #140357;
     padding: 20px;
     margin: 0 auto;
-    /* Ajout de cette ligne pour centrer horizontalement */
     margin-bottom: 10px;
     width: 50%;
     text-align: center;
     margin-top: 5px;
-    border-collapse: collapse;
+    border-radius: 10px;
+    background-color: #98b6e3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1{
+h1 {
     text-align: center;
 }
 

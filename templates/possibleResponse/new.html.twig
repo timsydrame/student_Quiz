@@ -3,16 +3,23 @@
 {% endblock %}
 
 {% block body %}
-<div class="form-container">
-	{# templates/question/new.html.twig #}
-	{{ form_start(form) }}
-	{{ form_errors(form) }}
+	<div
+		class="form-container">
+		{# templates/question/new.html.twig #}
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
 
-	{{ form_row(form.enonce, {'label': 'Entrer une réponse possible'}) }}
-	
-	<button type="submit">Enregistrer</button>
+		{{ form_row(form.enonce, {'label': 'Entrer une réponse possible'}) }}
+		{{ form_row(form.imageResponse, {'label': 'Entrer une image réponse possible'}) }}
 
-	{{ form_end(form) }}
-</div>
+		{{ form_row(form.isCorrecte) }}
+
+		{{ form_row(form.question, {'label': 'La question est:'}) }}
+
+
+		<button type="submit">Enregistrer</button>
+
+		{{ form_end(form) }}
+	</div>
 {% endblock %}
 

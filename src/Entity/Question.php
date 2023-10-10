@@ -26,15 +26,11 @@ class Question
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Response::class, orphanRemoval: true)]
-    private Collection $responses;
-
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: PossibleResponse::class, orphanRemoval: true)]
     private Collection $possibleResponses;
 
     public function __construct()
     {
-        $this->responses = new ArrayCollection();
         $this->possibleResponses = new ArrayCollection();
     }
 
@@ -79,35 +75,6 @@ class Question
         return $this;
     }
 
-    /**
-     * @return Collection<int, Response>
-     */
-    public function getResponses(): Collection
-    {
-        return $this->responses;
-    }
-
-    public function addResponse(Response $response): static
-    {
-        if (!$this->responses->contains($response)) {
-            $this->responses->add($response);
-            $response->setQuestion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResponse(Response $response): static
-    {
-        if ($this->responses->removeElement($response)) {
-            // set the owning side to null (unless already changed)
-            if ($response->getQuestion() === $this) {
-                $response->setQuestion(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, PossibleResponse>

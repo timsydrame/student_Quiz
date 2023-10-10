@@ -14,7 +14,12 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('enonce')
+        ->add('enonce', null, [
+            // 'label' => 'Question',
+            'attr' => [
+                'placeholder' => ' Ajouter Votre question',
+            ],
+        ])
             // ->add('image')
             ->add('quiz', EntityType::class, [
                 'class' => Quiz::class,

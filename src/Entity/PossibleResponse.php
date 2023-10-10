@@ -20,6 +20,9 @@ class PossibleResponse
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $imageResponse = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isCorrecte = false;
+
     #[ORM\ManyToOne(inversedBy: 'possibleResponses')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
@@ -53,6 +56,18 @@ class PossibleResponse
         return $this;
     }
 
+    public function isCorrecte(): bool
+    {
+        return $this->isCorrecte;
+    }
+
+    public function setIsCorrect(bool $isCorrecte): static
+    {
+        $this->isCorrecte = $isCorrecte;
+
+        return $this;
+    }
+
     public function getQuestion(): ?Question
     {
         return $this->question;
@@ -64,6 +79,4 @@ class PossibleResponse
 
         return $this;
     }
-
-   
 }

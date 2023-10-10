@@ -3,20 +3,22 @@
 {% endblock %}
 
 {% block body %}
-<div class="form-container">
-	{# templates/question/edit.html.twig #}
-	{{ form_start(form) }}
-	{{ form_errors(form) }}
+	<div
+		class="form-container">
+		{# templates/question/edit.html.twig #}
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
 
-	{{ form_row(form.enonce, {'label': 'Modifier la question ici'}) }}
+		{{ form_row(form.enonce, {'label': 'Modifier la question ici'}) }}
+		{{ form_row(form.quiz, {'label': 'Modifier la quiz ici'}) }}
 
-	<button type="submit">Enregistrer les modifications</button>
+		<button type="submit">Enregistrer les modifications</button>
 
-	{{ form_end(form) }}
-</div>
+		{{ form_end(form) }}
+	</div>
 	<h1>liste des reponses possibles</h1>
 
-	<a href=" {{ path('app_possible_response_new', {'questionId': question.id}) }} " class="btn btn-primary">
+	<a href="{{ path('app_possible_response_new', {'questionId': question.id}) }}" class="btn btn-primary">
 		<i class="fas fa-book"></i>
 		Ajouter une Reponse possible
 	</a>
@@ -29,39 +31,27 @@
 			</tr>
 		</thead>
 		<tbody>
-        {% for possibleResponse in question.possibleResponses %}
-
+			{% for possibleResponse in question.possibleResponses %}
 				<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
-                <td>{{ possibleResponse.enonce }}</td>
-
+					<td>{{ possibleResponse.enonce }}</td>
+					<td>{{ possibleResponse.isCorrecte }}</td>
 					<td>
-						{# <a href="{{ path('app_question', {'questionId': question.id}) }} " class="btn btn-primary"> #}
 						<a href="#" class="btn btn-danger">
-
 							<i class="fas fa-play"></i>
 							Lire
 						</a>
-
 						<a href="{{ path('app_possible_response_edit', {'responseId': possibleResponse.id, 'questionId': question.id}) }}" class="btn btn-warning">
-
-
-
 							<i class="fas fa-edit"></i>
 							Modifier
 						</a>
-
-                        <a href="{{ path('app_possible_response_delete', {'possibleResponseId': possibleResponse.id, 'questionId': question.id}) }}" class="btn btn-danger">
-
+						<a href="{{ path('app_possible_response_delete', {'possibleResponseId': possibleResponse.id, 'questionId': question.id}) }}" class="btn btn-danger">
 							<i class="fas fa-trash"></i>
 							Supprimer
 						</a>
 					</td>
-					<table/>
-				{% endfor %}
-			</tbody>
+				</tr>
+			{% endfor %}
 		</tbody>
 	</table>
-
-
 {% endblock %}
 

@@ -4,15 +4,24 @@
 
 {% block body %}
 <div class="form-container">
-	{# templates/question/new.html.twig #}
-	{{ form_start(form) }}
-	{{ form_errors(form) }}
+    {# templates/question/edit.html.twig #}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
 
-	{{ form_row(form.enonce, {'label': 'Modifier la réponse possible'}) }}
-	
-	<button type="submit">Enregistrer</button>
+	{{ form_row(form.enonce, {'label': 'Modifier la reponse ici'}) }}
 
-	{{ form_end(form) }}
+    {{ form_row(form.isCorrecte, {'label': 'Est ce la bonne reponse?'}) }}
+	{{ form_row(form.imageResponse, {'attr': {'style': 'display: none;'}, 'label_attr': {'style': 'display: none;'}}) }}
+
+
+
+    {{ form_row(form.question, {'label': 'La Question est:'}) }}
+
+    <button type="submit">Enregistrer les modifications</button>
+
+    {{ form_end(form) }}
+</div>
+
 </div>
 {% endblock %}
 

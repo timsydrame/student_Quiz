@@ -6,6 +6,7 @@ use App\Entity\PossibleResponse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PossibleResponseType extends AbstractType
 {
@@ -14,8 +15,11 @@ class PossibleResponseType extends AbstractType
         $builder
             ->add('enonce')
             ->add('imageResponse')
-            ->add('question')
-        ;
+            ->add('isCorrecte', CheckboxType::class, [
+                'label' => 'Est ce la bonne reponse?',
+                'required' => false, // Set to true if it's a mandatory field
+            ])
+            ->add('question');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
