@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Create new CandidateResponse!
+{% endblock %}
+
+{% block body %}
+	<div
+		class="form-container">
+		{# templates/candidateResponse/new.html.twig #}
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+
+		{{ form_row(form.enoncer, {'label': 'Entrer une response possible'}) }}
+{{ form_row(form.imageResponse, {'label': 'Entrer une response image possible '}) }}
+
+{{ form_row(form.iscorrect, {'label': 'Est ce une response correcte ?'}) }}
+
+
+		{{ form_row(form.question, {'label': 'La question est:'}) }}
+
+		<button type="submit">Enregistrer la nouvelle reponse</button>
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
+

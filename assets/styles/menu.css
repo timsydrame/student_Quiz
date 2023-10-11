@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(to bottom, #d0e7f1, #9fc3e7, #8080e9);
+    width: 100vw;
     height: 100vh;
-    width: 100%;
 }
 .navbar {
     display: flex;
@@ -11,7 +11,9 @@ body {
     color: black;
     border: 1px solid rgb(123, 96, 221);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 99%;
 }
+
 
 .logo img {
     width: 150px;

@@ -10,7 +10,9 @@
 }
 /* Style du tableau */
 table {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
     border-collapse: collapse;
     border: 1px solid #ccc;
     overflow: auto;
@@ -18,15 +20,19 @@ table {
 
 /* Style de l'en-tête */
 thead {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: #ede2e2;
     /* Couleur de fond de l'en-tête */
-    width: 100%;
+    /* width: 100%; */
 }
 
 thead th {
+    flex: 1;
     padding: 8px;
     /* Espacement interne des cellules de l'en-tête */
-    text-align: left;
     /* Alignement du texte à gauche dans l'en-tête */
     border-bottom: 2px solid #1d026f;
     /* Bordure en bas de l'en-tête */
@@ -39,18 +45,7 @@ tbody tr {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #16036c;
-}
-
-/* Style des lignes paires */
-tbody tr.even {
-    background-color: #d6c7c7;
-}
-/* Style des lignes du tableau */
-tbody tr {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #16036c;
+    width: 100%;
 }
 
 /* Style des lignes paires */
@@ -65,58 +60,27 @@ tbody tr.odd {
 
 /* Style des cellules du tableau */
 tbody td {
+    flex: 1;
     padding: 8px;
     text-align: left;
     font-size: 1.5rem;
-    width: 100%;
 }
-tbody tr.odd {
-    background-color: rgb(158, 151, 210);
+/* Ajouter une bordure à droite pour séparer les colonnes */
+th,
+td {
+    border-right: 2px solid #373467;
 }
 
-/* Style des cellules du tableau */
-tbody td {
-    padding: 8px;
-    text-align: left;
-    font-size: 1.5rem;
-    width: 100%;
+/* Supprimer la bordure à droite de la dernière colonne */
+th:last-child,
+td:last-child {
+    border-right: none;
 }
 
 /* Style des boutons d'action */
 .btn {
     margin-left: 20px;
     /* Espacement entre les boutons */
-}
-    
-
-
-/* Style des lignes du tableau */
-tbody tr {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #afaeae;
-    width: 100%;
-        /* Ajout de cette ligne pour occuper 100% de la largeur */
-}
-
-/* Style des lignes paires */
-tbody tr.even {
-    background-color: #d6c7c7;
-}
-
-/* Style des lignes impaires */
-tbody tr.odd {
-    background-color: rgb(158, 151, 210);
-}
-
-/* Style des cellules du tableau */
-tbody td {
-    padding: 8px;
-    /* Espacement interne des cellules du corps du tableau */
-    text-align: left;
-    /* Alignement du texte à gauche dans le corps du tableau */
-    font-size: 1.5rem;
 }
 
 /* Style des boutons d'action */

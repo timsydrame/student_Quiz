@@ -2,22 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\PossibleResponse;
+use App\Entity\CandidateResponse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class PossibleResponseType extends AbstractType
+class CandidateResponseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('enonce')
+            ->add('enoncer')
             ->add('imageResponse')
-            ->add('isCorrecte', CheckboxType::class, [
-                'label' => 'Est ce la bonne reponse?',
-                'required' => false, // Set to true if it's a mandatory field
+            ->add('iscorrect', CheckboxType::class, [
+                'label' => 'Est-ce la bonne réponse?',
+                'required' => false,
             ])
             ->add('question');
     }
@@ -25,7 +25,7 @@ class PossibleResponseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => PossibleResponse::class,
+            'data_class' => CandidateResponse::class,
         ]);
     }
 }

@@ -3,16 +3,18 @@
 {% endblock %}
 
 {% block body %}
-<div class="form-container">
-    {# templates/quiz/new.html.twig #}
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
+	<div
+		class="form-container">
+		{# templates/quiz/new.html.twig #}
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
 
-    {{ form_row(form.name) }}
-    {{ form_row(form.description) }}
+		{{ form_row(form.name) }}
+		{{ form_row(form.description) }}
 
-    <button type="submit">Enregistrer</button>
+		<button type="submit">Enregistrer</button>
 
-    {{ form_end(form) }}
-</div>
+		{{ form_end(form) }}
+	</div>
 {% endblock %}
+

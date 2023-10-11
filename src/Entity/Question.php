@@ -26,12 +26,12 @@ class Question
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: PossibleResponse::class, orphanRemoval: true)]
-    private Collection $possibleResponses;
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: CandidateResponse::class, orphanRemoval: true)]
+    private Collection $candidateResponses;
 
     public function __construct()
     {
-        $this->possibleResponses = new ArrayCollection();
+        $this->candidateResponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,30 +76,34 @@ class Question
     }
 
 
+   
+
+   
+
     /**
-     * @return Collection<int, PossibleResponse>
+     * @return Collection<int, CandidateResponse>
      */
-    public function getPossibleResponses(): Collection
+    public function getCandidateResponses(): Collection
     {
-        return $this->possibleResponses;
+        return $this->candidateResponses;
     }
 
-    public function addPossibleResponse(PossibleResponse $possibleResponse): static
+    public function addCandidateResponse(CandidateResponse $candidateResponse): static
     {
-        if (!$this->possibleResponses->contains($possibleResponse)) {
-            $this->possibleResponses->add($possibleResponse);
-            $possibleResponse->setQuestion($this);
+        if (!$this->candidateResponses->contains($candidateResponse)) {
+            $this->candidateResponses->add($candidateResponse);
+            $candidateResponse->setQuestion($this);
         }
 
         return $this;
     }
 
-    public function removePossibleResponse(PossibleResponse $possibleResponse): static
+    public function removeCandidateResponse(CandidateResponse $candidateResponse): static
     {
-        if ($this->possibleResponses->removeElement($possibleResponse)) {
+        if ($this->candidateResponses->removeElement($candidateResponse)) {
             // set the owning side to null (unless already changed)
-            if ($possibleResponse->getQuestion() === $this) {
-                $possibleResponse->setQuestion(null);
+            if ($candidateResponse->getQuestion() === $this) {
+                $candidateResponse->setQuestion(null);
             }
         }
 

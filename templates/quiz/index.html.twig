@@ -1,8 +1,11 @@
-	{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
 	<h1>liste des quizs</h1>
-	<a href=" {{ path('app_quiz_new') }} " class="btn btn-primary">Créer un Quiz</a>
+	<a href=" {{ path('app_quiz_new') }} " class="btn btn-primary">
+		<i class="fas fa-book"></i>
+
+		Créer un Quiz</a>
 
 	<table class="table">
 		<thead>
@@ -17,9 +20,10 @@
 				<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
 					<td>{{ quiz.name }}</td>
 					<td>{{ quiz.description }}</td>
-					<td>						
-						<a href="{{ path('app_question', {'id': quiz.id}) }} " class="btn btn-primary">
-						{# <a href="#" class="btn btn-primary"> #}
+					<td>
+						<a
+							href="{{ path('app_question', {'id': quiz.id}) }} " class="btn btn-primary">
+							{# <a href="#" class="btn btn-primary"> #}
 
 							<i class="fas fa-play"></i>
 							Lire

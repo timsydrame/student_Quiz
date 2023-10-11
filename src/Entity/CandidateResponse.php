@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\PossibleResponseRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\CandidateResponseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PossibleResponseRepository::class)]
-class PossibleResponse
+#[ORM\Entity(repositoryClass: CandidateResponseRepository::class)]
+class CandidateResponse
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,15 +14,15 @@ class PossibleResponse
     private ?int $id = null;
 
     #[ORM\Column(length: 1000)]
-    private ?string $enonce = null;
+    private ?string $enoncer = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageResponse = null;
 
-    #[ORM\Column(type: 'boolean')]
-    private bool $isCorrecte = false;
+    #[ORM\Column]
+    private ?bool $iscorrect = null;
 
-    #[ORM\ManyToOne(inversedBy: 'possibleResponses')]
+    #[ORM\ManyToOne(inversedBy: 'candidateResponses')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
@@ -32,14 +31,14 @@ class PossibleResponse
         return $this->id;
     }
 
-    public function getEnonce(): ?string
+    public function getEnoncer(): ?string
     {
-        return $this->enonce;
+        return $this->enoncer;
     }
 
-    public function setEnonce(string $enonce): static
+    public function setEnoncer(string $enoncer): static
     {
-        $this->enonce = $enonce;
+        $this->enoncer = $enoncer;
 
         return $this;
     }
@@ -56,14 +55,14 @@ class PossibleResponse
         return $this;
     }
 
-    public function isCorrecte(): bool
+    public function isIscorrect(): ?bool
     {
-        return $this->isCorrecte;
+        return $this->iscorrect;
     }
 
-    public function setIsCorrect(bool $isCorrecte): static
+    public function setIscorrect(bool $iscorrect): static
     {
-        $this->isCorrecte = $isCorrecte;
+        $this->iscorrect = $iscorrect;
 
         return $this;
     }
