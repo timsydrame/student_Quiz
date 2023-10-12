@@ -22,39 +22,40 @@
 		<i class="fas fa-book"></i>
 		Ajouter une Réponse possible
 	</a>
+	<div class="table-container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Réponse Possible</th>
+					<th>est t'elle correcte?</th>
+					<th>Actions</th>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Réponse Possible</th>
-				<th>est t'elle correcte?</th>
-				<th>Actions</th>
-
-			</tr>
-		</thead>
-		<tbody>
-			{% for candidateResponse in question.candidateResponses %}
-				<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
-					<td>{{ candidateResponse.enoncer }}</td>
-					<td>{{ candidateResponse.iscorrect ? 'Oui' : 'Non' }}</td>
-					<td>
-						<a href="#" class="btn btn-danger">
-							<i class="fas fa-play"></i>
-							Lire
-						</a>
-						<a href="{{ path('app_candidate_response_edit', {'responseId': candidateResponse.id, 'questionId': question.id}) }}" class="btn btn-warning">
-							<i class="fas fa-edit"></i>
-							Modifier
-						</a>
-						<a href="{{ path('app_candidate_response_delete', {'candidateResponseId': candidateResponse.id, 'questionId': question.id}) }}" class="btn btn-danger">
-							<i class="fas fa-trash"></i>
-							Supprimer
-						</a>
-					</td>
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for candidateResponse in question.candidateResponses %}
+					<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
+						<td>{{ candidateResponse.enoncer }}</td>
+						<td>{{ candidateResponse.iscorrect ? 'Oui' : 'Non' }}</td>
+						<td>
+							<a href="#" class="btn btn-danger">
+								<i class="fas fa-play"></i>
+								Lire
+							</a>
+							<a href="{{ path('app_candidate_response_edit', {'responseId': candidateResponse.id, 'questionId': question.id}) }}" class="btn btn-warning">
+								<i class="fas fa-edit"></i>
+								Modifier
+							</a>
+							<a href="{{ path('app_candidate_response_delete', {'candidateResponseId': candidateResponse.id, 'questionId': question.id}) }}" class="btn btn-danger">
+								<i class="fas fa-trash"></i>
+								Supprimer
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
 
 {% endblock %}

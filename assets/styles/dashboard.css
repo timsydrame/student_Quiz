@@ -1,93 +1,78 @@
 /* Style du tableau */
 .btn.btn-primary {
-    border: 1px solid rgb(29 47 197);;
-    margin-bottom: 40px;
-    font-size: 1.7rem;
-    width: 15%;
-    height: 40px;
-    background-color: rgb(139, 132, 190);
-    margin-top: 40px;
-}
-/* Style du tableau */
-table {
-    display: flex;
-    flex-direction: column;
-    /* width: 100%; */
-    border-collapse: collapse;
-    border: 1px solid #ccc;
-    overflow: auto;
-}
-
-/* Style de l'en-tête */
-thead {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ede2e2;
-    /* Couleur de fond de l'en-tête */
-    /* width: 100%; */
-}
-
-thead th {
-    flex: 1;
+    border: 1px solid midnightblue;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    width: 13%;
+    height: 20px;
+    background-color: #d6c7c7;
+    margin-top: 10px;
+    margin-left: auto;
+    cursor: pointer;
+    margin-bottom: 5px;
+    box-shadow: 0 0px 5px mediumblue;
     padding: 8px;
-    /* Espacement interne des cellules de l'en-tête */
-    /* Alignement du texte à gauche dans l'en-tête */
-    border-bottom: 2px solid #1d026f;
-    /* Bordure en bas de l'en-tête */
-    font-size: 1.5rem;
+    transition: background-color 0.3s, transform 0.3s, color 0.3s;
+    /* Ajout de la transition */
 }
 
-/* Style des lignes du tableau */
-tbody tr {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #16036c;
+.btn.btn-primary:hover {
+    color: #9e97d2;
+    background-color: midnightblue;
+    transform: translateY(-3px) rotate(3deg);
+    /* Léger déplacement vertical et rotation de 3 degrés */
+    color: #f8f9fa;
+}
+
+/* Style de la div contenant le tableau */
+.table-container {
+    width: auto;
+    /* margin-top: 20px; */
+    margin: -16px auto;
+    border: solid 1px midnightblue;
+    box-shadow: 0 4px 18px mediumblue;
+    cursor: pointer;
+}
+
+/* Style du tableau */
+.table {
     width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style de l'en-tête du tableau */
+.table thead th {
+    background-color: #ede2e2;
+    border-bottom: 2px solid midnightblue;
+    padding: 8px;
+    font-size: 1.6rem;
+    text-align: left;
 }
 
 /* Style des lignes paires */
-tbody tr.even {
+.table tbody tr.even {
     background-color: #d6c7c7;
 }
 
 /* Style des lignes impaires */
-tbody tr.odd {
+.table tbody tr.odd {
     background-color: rgb(158, 151, 210);
 }
 
 /* Style des cellules du tableau */
-tbody td {
-    flex: 1;
+.table td {
     padding: 8px;
     text-align: left;
     font-size: 1.5rem;
-}
-/* Ajouter une bordure à droite pour séparer les colonnes */
-th,
-td {
-    border-right: 2px solid #373467;
-}
-
-/* Supprimer la bordure à droite de la dernière colonne */
-th:last-child,
-td:last-child {
-    border-right: none;
-}
-
-/* Style des boutons d'action */
-.btn {
-    margin-left: 20px;
-    /* Espacement entre les boutons */
 }
 
 /* Style des boutons d'action */
 .btn {
     margin-left: 10px;
-    /* Espacement entre les boutons */
 }
+
+
 
 
 
@@ -100,9 +85,10 @@ form textarea {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 2px solid #135886;
+    border: 2px solid midnightblue;
     border-radius: 5px;
     background-color: #f8f9fa;
+    font-size: 1.0rem;
 }
 
 /* Style générique pour tous les boutons dans les formulaires */
@@ -114,6 +100,7 @@ form button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px mediumblue;
 }
 
 /* Style spécifique pour le bouton de type "submit" */
@@ -122,8 +109,9 @@ form button[type="submit"] {
 }
 
 form button:hover {
-    background-color: #1c084a;
+    background-color: midnightblue;
     transform: translateY(-3px);
+    color: #f8f9fa;
 }
 
 /* Style pour tous les formulaires */
@@ -132,12 +120,13 @@ form button:hover {
     padding: 20px;
     margin: 0 auto;
     margin-bottom: 10px;
-    width: 50%;
+    width: 60%;
     text-align: center;
     margin-top: 5px;
     border-radius: 10px;
     background-color: #98b6e3;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
 }
 
 h1 {

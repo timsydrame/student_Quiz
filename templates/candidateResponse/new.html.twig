@@ -10,17 +10,15 @@
 		{{ form_start(form) }}
 		{{ form_errors(form) }}
 
-		{{ form_row(form.enoncer, {'label': 'Entrer une response possible'}) }}
-{{ form_row(form.imageResponse, {'label': 'Entrer une response image possible '}) }}
-
-{{ form_row(form.iscorrect, {'label': 'Est ce une response correcte ?'}) }}
-
 
 		{{ form_row(form.question, {'label': 'La question est:'}) }}
-
+		{{ form_row(form.enoncer, {'label': 'Entrer une response possible'}) }}
+		{# Ajoutez la classe 'hidden' pour masquer le champ #}
+		{# {{ form_row(form.imageResponse, {'label': 'Entrer une réponse image possible', 'attr': {'class': 'hidden'}}) }} #}
+		{{ form_row(form.iscorrect, {'label': 'Est ce une response correcte ?'}) }}
 		<button type="submit">Enregistrer la nouvelle reponse</button>
 
-		{{ form_end(form) }}
-	</div>
-{% endblock %}
+
+	{{ form_end(form) }}
+</div>{% endblock %}
 

@@ -22,41 +22,42 @@
 
 	<a href="{{ path('app_question_new', {'quizId': quiz.id}) }}" class="btn btn-primary">
 		<i class="fas fa-book"></i>
-		Ajouter une question
+		Ajouter une nouvelle question
 	</a>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Question</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for question in quiz.questions %}
-				<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
-					<td>{{ question.enonce }}</td>
-					<td>
-						{# <a href="{{ path('app_question', {'questionId': question.id}) }} " class="btn btn-primary"> #}
-						<a href="#" class="btn btn-danger">
-							<i class="fas fa-play"></i>
-							Lire
-						</a>
-
-						<a href="{{ path('app_question_edit', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-warning">
-							<i class="fas fa-edit"></i>
-							Modifier
-						</a>
-
-						<a href="{{ path('app_question_delete', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-danger">
-							<i class="fas fa-trash"></i>
-							Supprimer
-						</a>
-					</td>
+	<div class="table-container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Question</th>
+					<th>Actions</th>
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for question in quiz.questions %}
+					<tr class="{{ cycle(['even', 'odd'], loop.index) }}">
+						<td>{{ question.enonce }}</td>
+						<td>
+							{# <a href="{{ path('app_question', {'questionId': question.id}) }} " class="btn btn-primary"> #}
+							<a href="#" class="btn btn-danger">
+								<i class="fas fa-play"></i>
+								Lire
+							</a>
+
+							<a href="{{ path('app_question_edit', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-warning">
+								<i class="fas fa-edit"></i>
+								Modifier
+							</a>
+
+							<a href="{{ path('app_question_delete', {'questionId': question.id, 'quizId': quiz.id}) }}" class="btn btn-danger">
+								<i class="fas fa-trash"></i>
+								Supprimer
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
 {% endblock %}
 
