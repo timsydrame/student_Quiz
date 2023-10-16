@@ -7,9 +7,9 @@
     {# templates/question/new.html.twig #}
     {{ form_start(form) }}
     {{ form_errors(form) }}
-
-    {{ form_row(form.enonce) }}
+    
     {{ form_row(form.quiz) }}
+    {{ form_row(form.enonce) }}
     <button type="submit">Enregistrer la question</button>
 
     {{ form_end(form) }}

@@ -9,10 +9,76 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class QuizController extends AbstractController
 {
+    #[Route('/api/quiz', name: 'api_quiz_list', methods: ['GET'])]
+    public function apiList(QuizRepository $quizRepository): JsonResponse
+    {
+        $quizList = $quizRepository->findAll();
+        $data = [];
+
+        foreach ($quizList as $quiz) {
+            $data[] = [
+                'id' => $quiz->getId(),
+                'name' => $quiz->getName(), // Ajoutez d'autres champs que vous souhaitez inclure
+                // ...
+            ];
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route('/api/quiz/{id}', name: 'api_quiz_show', methods: ['GET'])]
+    public function apiShow($id, QuizRepository $quizRepository): JsonResponse
+    {
+        $quiz = $quizRepository->find($id);
+
+        if (!$quiz) {
+            return $this->json(['message' => 'Quiz not found'], 404);
+        }
+
+        // Récupérer les questions associées au quiz
+        $questions = $quiz->getQuestions();
+
+        $data = [
+            'id' => $quiz->getId(),
+            'name' => $quiz->getName(),
+            'questions' => [],  // Initialise un tableau pour stocker les questions
+        ];
+
+        // Boucler sur les questions pour les ajouter à la réponse
+        foreach ($questions as $question) {
+            $questionData = [
+                'id' => $question->getId(),
+                'text' => $question->getEnonce(),
+                'responses' => [],  // Initialise un tableau pour stocker les réponses de la question
+            ];
+
+            // Récupérer les réponses associées à la question
+            $responses = $question->getCandidateResponses();
+
+            // Boucler sur les réponses pour les ajouter à la question
+            foreach ($responses as $response) {
+                $responseData = [
+                    'id' => $response->getId(),
+                    'text' => $response->getEnoncer(),
+                    // Autres données de réponse que vous souhaitez inclure
+                ];
+
+                $questionData['responses'][] = $responseData;
+            }
+
+            $data['questions'][] = $questionData;
+        }
+
+        return $this->json($data);
+    }
+
+
+
     #[Route('/quiz', name: 'app_quiz')]
     public function index(QuizRepository $quizRepository): Response
     {
