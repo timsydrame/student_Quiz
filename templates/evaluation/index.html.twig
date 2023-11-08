@@ -1,27 +1,38 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello EvaluationController!
+{% block title %}Passer le Quiz
+{% endblock %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_evaluation.css') }}">
 {% endblock %}
 
+
 {% block body %}
-<form action="{{ path('app_evaluation_submit', {'id': data.id}) }}" method="POST" enctype="multipart/form-data">
+	<form method="post" action="{{ path('app_evaluation_submit', {'id': quiz.id}) }}">
+		{{ form_start(form) }}
 
-		<input type="hidden" name="quiz_id" value="{{ data.id }}">
+		<h2>Questions:</h2>
+		<ul>
+			{% for question in questions %}
+				<li>
+					{{ question.enonce }}
+					<ul>
+						{% for response in question.candidateResponses %}
+							<li>
+								<label>
+								<input type="checkbox" name="evaluation[responses][]" value="{{ response.id }}">
 
-		{% for question in data.questions %}
-			<div>
-				{{ question.enonce }}
-				{% for response in question.responses %}
-					<div>
-                    <input type="checkbox"  value="{{ response.id }}">
-
-						{{ response.enonce }}
-					</input>
-				</div>
+									{{ response.enoncer }}
+								</label>
+							</li>
+						{% endfor %}
+					</ul>
+				</li>
 			{% endfor %}
-		</div>
-	{% endfor %}
-        
-	<button type="submit">Soumettre</button>
-</form>{% endblock %}
+		</ul>
+
+		<button type="submit">Submit</button>
+	</form>
+{% endblock %}
 

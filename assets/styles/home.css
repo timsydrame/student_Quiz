@@ -1,0 +1,38 @@
+/* public/css/styles.css */
+
+/* Style pour la page d'accueil */
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.quiz-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #544dba47;
+}
+
+.quiz-card a {
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.btn.btn-primary {
+    border: 1px solid midnightblue;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    width: 13%;
+    height: 20px;
+    background-color: #4426a6;
+    margin-top: 10px;
+    margin-left: auto;
+    cursor: pointer;
+    margin-bottom: 5px;
+    box-shadow: 0 0px 5px mediumblue;
+    padding: 8px;
+    transition: background-color 0.3s, transform 0.3s, color 0.3s;
+}

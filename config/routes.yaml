@@ -1,3 +1,16 @@
 controllers:
     resource: ../src/Controller/
-    type: attribute
+    type: annotation
+
+# app_evaluation_submit:
+#     path: /evaluation/submit/{id}
+#     controller: App\Controller\EvaluationController::submit
+#     methods: [POST]
+
+app_registration:
+    path: /inscription
+    controller: App\Controller\RegistrationController::index
+
+app_home:  # Réparez l'indentation ici
+    path: /home
+    controller: App\Controller\HomeController::index

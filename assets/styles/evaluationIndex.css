@@ -1,0 +1,59 @@
+/* evaluation.css */
+/* Style pour le titre h1 */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style pour les questions */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style pour les réponses */
+label {
+    display: block;
+    padding: 10px 20px;
+    border: 1px solid #200756;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+/* Style pour les boutons */
+button {
+    width: 30%;
+    background-color: #09294b;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/* Style pour les liens de retour */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Style pour les cases à cocher */
+input[type="checkbox"] {
+    display: flex;
+    margin-right: 10px;
+    padding: 10px 20px;
+    padding: 10px 20px;
+}
+
+/* Ajouter de l'espace entre les questions */
+li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+
+}

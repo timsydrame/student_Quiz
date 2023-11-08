@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats du Quiz
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_evaluation_results.css') }}">
+{% endblock %}
+
+{% block body %}
+	{# Récupérez le score stocké dans la session #}
+	{% set quizScore = quizScore is defined ? quizScore ~ '%' : 'N/A' %}
+
+	<h1>Résultats du quiz "{{ quiz.name }}"</h1>
+	<p>Vous avez obtenu
+		{{ percentageCorrect }}% de bonnes réponses sur
+		{{ totalQuestions }}
+		questions.</p>
+
+	<p>Score :
+		{{ quizScore }}</p>
+
+	{% for questionInfo in questionData %}
+		<h2>{{ questionInfo.question }}</h2>
+		<ul>
+			{% if questionInfo.correctResponses is not empty %}
+				<li>Questions correctes :
+					{{ questionInfo.correctResponses | join(', ') }}</li>
+			{% endif %}
+			{% if questionInfo.userResponses is not empty %}
+				<li>Vos réponses :
+					{{ questionInfo.userResponses | join(', ') }}</li>
+			{% else %}
+				<li>Aucune réponse sélectionnée</li>
+			{% endif %}
+		</ul>
+	{% endfor %}
+
+	<p>
+		<a href="{{ path('app_home') }}">Retour à la page d'accueil</a>
+	</p>
+{% endblock %}
+

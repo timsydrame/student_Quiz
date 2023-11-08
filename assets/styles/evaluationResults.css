@@ -1,0 +1,50 @@
+/* evaluation_results.css */
+/* Style pour le titre h1 */
+h1 {
+    color: #333;
+    /* Couleur du texte */
+    font-size: 24px;
+    /* Taille de la police */
+}
+
+/* Style pour les pourcentages */
+p {
+    font-size: 18px;
+    /* Taille de la police */
+}
+
+/* Style pour les questions */
+h2 {
+    font-size: 20px;
+    /* Taille de la police pour les questions */
+    margin-top: 20px;
+    /* Marge supérieure entre les questions */
+}
+
+/* Style pour les listes (questions, réponses) */
+ul {
+    list-style: none;
+    /* Enlever les puces des listes */
+    padding-left: 0;
+    /* Enlever le retrait de la liste */
+}
+
+/* Style pour les réponses correctes */
+li.questions-correctes {
+    color: green;
+    /* Couleur du texte pour les réponses correctes */
+}
+
+/* Style pour les réponses de l'utilisateur */
+li.vos-reponses {
+    color: red;
+    /* Couleur du texte pour les réponses de l'utilisateur */
+}
+
+/* Style pour le lien de retour à la page d'accueil */
+a {
+    text-decoration: none;
+    /* Enlever la soulignement des liens */
+    color: #007bff;
+    /* Couleur du texte du lien */
+}

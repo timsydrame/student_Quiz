@@ -3,28 +3,27 @@
 {% block title %}Page d'accueil
 {% endblock %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_home.css') }}">
+{% endblock %}
+
+
 {% block body %}
 	<h1>Bienvenue sur la page d'accueil</h1>
 
 	<div>
 		{% for quiz in quizList %}
-			<div>
-				<td>{{ quiz.name }}</td>
-				<td>{{ quiz.description }}</td>
-				<td>
-					<a
-						href="{{ path('app_evaluation', {'id': quiz.id}) }} " class="btn btn-primary">
-						<i class="fas fa-play"></i>
-						Evaluation
-					</a>
-
-
-				</td>
+			<div class="quiz-card">
+				<h2>{{ quiz.name }}</h2>
+				<p>{{ quiz.description }}</p>
+				<a href="{{ path('app_evaluation', {'id': quiz.id}) }}" class="btn btn-primary">
+					<i class="fas fa-play"></i>
+					Passer à l'évaluation
+				</a>
 			</div>
 		{% endfor %}
-
-
 	</div>
-
 {% endblock %}
 
