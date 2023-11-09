@@ -28,7 +28,12 @@ Encore
   .addStyleEntry("main_quizTest", "./assets/styles/quizTest.css")
   .addStyleEntry("main_home", "./assets/styles/home.css")
   .addStyleEntry("main_evaluation", "./assets/styles/evaluationIndex.css")
-  .addStyleEntry("main_evaluation_results", "./assets/styles/evaluationResults.css")
+  .addStyleEntry(
+    "main_evaluation_results",
+    "./assets/styles/evaluationResults.css"
+  )
+  .addStyleEntry("main_registration", "./assets/styles/registration.css")
+  .addStyleEntry("main_security", "./assets/styles/security.css")
 
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   .enableStimulusBridge("./assets/controllers.json")

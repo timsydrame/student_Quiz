@@ -1,0 +1,35 @@
+/* public/css/styles.css */
+
+.alert {
+    color: #c62a3a;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+.alert error-message{
+    color: #c62a3a;
+ background-color: #f8d7da;
+ border: 1px solid #f5c6cb;
+ padding: 0.75rem 1.25rem;
+ margin-bottom: 1rem;
+ border-radius: 0.25rem;
+}
+.form-container {
+    width: 50%;
+    padding: O;
+}
+
+form{
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+label{
+    font-size: 1.1rem;
+}
+button{
+    width: 220px;;
+}

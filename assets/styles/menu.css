@@ -35,14 +35,12 @@ body {
 .menu li  {
     margin: 0 15px;
     border: 2px solid rgb(130, 110, 212);
-    padding: 10px;
+    padding: 5px;
     border-radius: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     box-sizing: border-box;
     transition: opacity 0.3s;
-    font-size: 25px;
-    transition: transform 0.3s ease-in-out;
     flex-grow: 1;
     flex-basis: 0;
 }
@@ -50,7 +48,6 @@ body {
 .menu li:hover {
     background-color: #6222e2;
     opacity: 0.8;
-    transform: scale(0.5);
 }
 
 .menu li:not(:last-child) {

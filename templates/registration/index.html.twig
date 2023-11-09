@@ -3,11 +3,33 @@
 {% block title %}Inscription
 {% endblock %}
 
-{% block body %}
-	<h1>Inscription</h1>
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	<button type="submit">S'inscrire</button>
-	{{ form_end(form) }}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_registration.css') }}">
+
 {% endblock %}
+
+
+{% block body %}
+	{% for flashMessage in app.flashes('error') %}
+		<div class="alert">
+			{{ flashMessage }}
+		</div>
+	{% endfor %}
+
+	<h1>Inscription</h1>
+	<div class="form-container">
+
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button type="submit">S'inscrire</button>
+		{{ form_end(form) }}
+
+	</div>
+
+
+		</div>
+
+	{% endblock %}
 
