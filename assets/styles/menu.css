@@ -1,11 +1,47 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #d0e7f1, #9fc3e7, #8080e9);
+    background: linear-gradient(to bottom, #ffffff, #f2f2f2);
+    /* Dégradé de blanc à une nuance de gris très claire */
     width: 100vw;
-    
+    margin: 0;
+    /* Supprimez la marge par défaut du corps */   
 }
+
+.content{
+    overflow-y: auto;
+    /* Permet le défilement vertical lorsque le contenu dépasse la hauteur de la fenêtre */
+}
+
+header{
+    top: 0;
+    position: sticky;
+    /* z-index: 1000; */
+}
+
+/* Ajoutez ceci à votre fichier de style CSS */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid rgb(123, 96, 221);
+    padding: 5px;
+    text-align: center;
+    z-index: 1000;
+    margin-top: 5px;
+}
+
 .navbar {
     display: flex;
+    background-color: #f8f9fa;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
@@ -13,17 +49,19 @@ body {
     border: 1px solid rgb(123, 96, 221);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 99%;
+    z-index: 1000;
 }
 
-
 .logo img {
-    width: 150px;
+    width: 119px;
     margin-left: 14px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
 .menu {
     display: flex;
+    /* position: sticky; */
     flex-direction: row;
     list-style: none;
     margin: 0;

@@ -3,141 +3,218 @@
 namespace App\Controller;
 
 use App\Entity\Quiz;
-use App\Form\EvaluationType;
+use App\Form\EvaluationQuizType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EvaluationController extends AbstractController
 {
     #[Route('/evaluation/{id}', name: 'app_evaluation')]
-    public function index(Request $request, $id, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, $id, EntityManagerInterface $entityManager): Response 
     {
+        // recuperer le quiz dont l'id est passé en parametre
         $quizRepository = $entityManager->getRepository(Quiz::class);
         $quiz = $quizRepository->find($id);
-
         if (!$quiz) {
-            throw $this->createNotFoundException('Aucun quiz ne correspond à l\'ID ' . $id);
+            throw $this->createNotFoundException(
+                'Aucun quiz ne correspond à l\'id  ' . $id
+            );
         }
 
-        $questions = $quiz->getQuestions();
+        $data = $this->prepareEvaluationData($quiz);
 
-        $form = $this->createForm(EvaluationType::class);
+        $form = $this->createForm(EvaluationQuizType::class, $data);
 
+        // Gérer la soumission du formulaire
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Récupérez les réponses soumises depuis le formulaire
-            $submittedResponses = $form->get('responses')->getData();
+            // Récupérer les données saisies
+            $data = $form->getData();
+            return $this->forward('App\Controller\EvaluationController::result', [
+                'data' => $data,
+            ]);
 
-            // Initialisez le score
-            $score = 0;
-
-            // Parcourez les questions et comparez les réponses soumises avec les réponses correctes
-            foreach ($questions as $question) {
-                $candidateResponses = $question->getCandidateResponses();
-
-                // Comparez les réponses soumises avec les réponses candidates
-                $correct = true;
-                foreach ($candidateResponses as $candidateResponse) {
-                    if (!in_array($candidateResponse->getId(), $submittedResponses)) {
-                        $correct = false;
-                        break;
-                    }
-                }
-
-                if ($correct) {
-                    // Ajoutez un point au score si la réponse est correcte
-                    $score++;
-                }
-            }
-
-            // Redirigez l'utilisateur vers une page de résultats avec le score
-            return $this->redirectToRoute('app_evaluation_submit', ['id' => $id, 'score' => $score]);
         }
 
         return $this->render('evaluation/index.html.twig', [
             'form' => $form->createView(),
-            'questions' => $questions,
-            'quiz' => $quiz,
+        ]);
+    }
+    
+
+    #[Route('/evaluation-result', name: 'app_evaluation_result', methods: 'POST' )]
+    public function result(Request $request, EntityManagerInterface $entityManager): Response 
+    {
+        // Get the submitted data from the request
+        //$formData = json_decode($request->request->get('questions'), true);
+        $requestData = $request->request->all();
+        $quizId = $requestData['quiz_id'];
+        $questions = $requestData['questions'];
+        
+        $evaluationData['questions'] = $questions;
+        $evaluationData['quizId'] = $quizId;
+
+        $quizDataWithResult = $this->computeEvaluationResultData($evaluationData, $entityManager);
+        
+        dump($quizDataWithResult);
+
+        return $this->render('evaluation/result.html.twig', [
+            'data' => $quizDataWithResult,
         ]);
     }
 
-    #[Route('/evaluation/submit/{id}', name: 'app_evaluation_submit')]
-    public function submit(Request $request, $id, EntityManagerInterface $entityManager, SessionInterface $session): Response
-    {
-        $quizRepository = $entityManager->getRepository(Quiz::class);
-        $quiz = $quizRepository->find($id);
+    private function computeEvaluationResultData($evaluationData, EntityManagerInterface $entityManager): array {
+        
+        $quiz = $this->getQuizById($evaluationData['quizId'], $entityManager);
 
-        if (!$quiz) {
-            throw $this->createNotFoundException('Aucun quiz ne correspond à l\'ID ' . $id);
-        }
+        $data = [
+            'id' => $quiz->getId(),
+            'name' => $quiz->getName(),
+            'description' => $quiz->getDescription(),
+            'questions' => [],  // Initialise un tableau pour stocker les questions
+        ];
 
         $questions = $quiz->getQuestions();
-        $totalQuestions = count($questions);
-        $totalCorrectQuestions = 0; // Total des questions correctement répondues
 
-        // Initialisez un tableau pour stocker les données des questions
-        $questionData = [];
-
-        // Récupérez l'ID du quiz actuel
-        $quizId = $quiz->getId();
-
-        if ($request->getMethod() === 'POST') {
-            $session->set('quiz_scores', []);
-        }
-
+        // Boucler sur les questions
+        $totalQuestions = 0;
+        $correctlyAnsweredQuestions = 0; // Total des questions correctement répondues
         foreach ($questions as $question) {
-            $correctResponses = $question->getCandidateResponses()->filter(function ($response) {
-                return $response->isIscorrect();
-            });
 
-            $correctResponseIds = $correctResponses->map(function ($response) {
-                return $response->getId();
-            })->toArray();
-
-            $submittedResponseIds = $request->request->get('form')['responses'] ?? [];
-
-            if (is_array($submittedResponseIds)) {
-                $submittedResponseIds = array_map('intval', $submittedResponseIds);
-            } else {
-                $submittedResponseIds = [];
+            // Récupérer les réponses associées à la question
+            // Nous considérons uniquement les questions ayant au moins 2 repéonses
+            $responses = $question->getCandidateResponses();
+            if ($responses->count() < 2) {
+                continue;
             }
 
-            // Vérifiez si toutes les réponses correctes de la question sont sélectionnées par l'utilisateur
-            $correctlyAnswered = empty(array_diff($correctResponseIds, $submittedResponseIds));
+            // On comptabilise la question (car ayant au moins 2 réponses candidates)
+            $totalQuestions++;
 
-            if ($correctlyAnswered) {
-                $totalCorrectQuestions++;
-            }
-
-            // Ajoutez les informations de la question aux données
-            $questionData[] = [
-                'question' => $question->getEnonce(),
-                'correctResponses' => $correctResponseIds,
-                'userResponses' => $submittedResponseIds,
+            $quizQuestionId = $question->getId();
+            $questionData = [
+                'id' => $quizQuestionId,
+                'enonce' => $question->getEnonce(),
+                'responses' => [],  // Initialise un tableau pour stocker les réponses de la question
             ];
+
+            // Récupérer les 'id' des réponses sélectionnées par l'utilisateur pour cette question
+            $selectedResponseIds = $this->getUserResponseIds($evaluationData, $quizQuestionId);
+
+            $isQuizQuestionCorrectlyAnswered = true;
+            // Boucler sur les réponses pour les ajouter à la question
+            foreach ($responses as $response) {
+                $quizQuestionResponseId = $response->getId();
+                $isCorrect = $response->isIscorrect();
+
+                $isChecked = in_array($quizQuestionResponseId, $selectedResponseIds);
+
+                $isResponseCorrectlyAnswered = ($isCorrect == $isChecked);
+
+                $responseData = [
+                    'id' => $quizQuestionResponseId,
+                    'enonce' => $response->getEnoncer(),
+                    'isCorrect' => $isCorrect,
+                    'isChecked' => $isChecked,
+                    'isResponseCorrectlyAnswered' =>  $isResponseCorrectlyAnswered,
+                    // Autres données de réponse que vous souhaitez inclure
+                ];
+                
+                // Dès qu'une des réponses n'est pas correcte,
+                // alors la question est ratée dans sa globalité 
+                if (!$isResponseCorrectlyAnswered) {
+                    $isQuizQuestionCorrectlyAnswered = false;
+                }
+
+                $questionData['responses'][] = $responseData;
+            }
+
+            // Après avoir parcourru toutes les réponses, 
+            // on comptabilise 1 point pr la question si correctement répondu
+            if ($isQuizQuestionCorrectlyAnswered) {
+                $correctlyAnsweredQuestions++;
+            }
+            // On indique si la question a été correctement répondue
+            $questionData['isQuestionCorrectlyAnswered'] = $isQuizQuestionCorrectlyAnswered;
+            $data['questions'][] = $questionData;
         }
 
-        $percentageCorrect = ($totalCorrectQuestions / $totalQuestions) * 100;
+        $percentageCorrect = ($correctlyAnsweredQuestions / $totalQuestions) * 100;
 
-        // Récupérez les scores stockés dans la session
-        $quizScores = $session->get('quiz_scores', []);
-        // Stockez le score dans la session en utilisant l'ID du quiz actuel comme clé
-        $quizScores[$quizId] = $percentageCorrect;
-        $session->set('quiz_scores', $quizScores);
+        $data['percentageCorrect'] = $percentageCorrect;
+        $data['totalQuestions'] = $totalQuestions;
+        $data['totalCorrectlyAnsweredQuestions'] = $correctlyAnsweredQuestions;
 
-        return $this->render('evaluation/results.html.twig', [
-            'quiz' => $quiz,
-            'percentageCorrect' => $percentageCorrect,
-            'totalQuestions' => $totalQuestions,
-            'questionData' => $questionData,
-            'quizScore' => $quizScores[$quizId], // Récupérez le score du quiz actuel
-        ]);
+        return $data;
     }
 
+    private function getUserResponseIds($evaluationData, $quizQuestionId): array {
+        $selectedResponses = array_filter($evaluationData['questions'][$quizQuestionId]['responses'], function ($response) {
+            return array_key_exists('isChecked', $response);
+        });
 
+        $selectedResponseIds = array_map(function ($selectedResponse) { return intval($selectedResponse['id']); }, $selectedResponses);
+
+        return $selectedResponseIds;
+    }
+
+    private function prepareEvaluationData(Quiz $quiz): array {
+        $data = [
+            'id' => $quiz->getId(),
+            'name' => $quiz->getName(),
+            'description' => $quiz->getDescription(),
+            'questions' => [],  // Initialise un tableau pour stocker les questions
+        ];
+
+        $questions = $quiz->getQuestions();
+
+        // Boucler sur les questions pour les ajouter à la réponse
+        foreach ($questions as $question) {
+
+            // Récupérer les réponses associées à la question
+            // Nous considérons uniquement les questions ayant au moins 2 repéonses
+            $responses = $question->getCandidateResponses();
+            if ($responses->count() < 2) {
+                continue;
+            }
+
+            $questionData = [
+                'id' => $question->getId(),
+                'enonce' => $question->getEnonce(),
+                'responses' => [],  // Initialise un tableau pour stocker les réponses de la question
+            ];
+
+            // Boucler sur les réponses pour les ajouter à la question
+            foreach ($responses as $response) {
+                $responseData = [
+                    'id' => $response->getId(),
+                    'enonce' => $response->getEnoncer(),
+                    'isChecked' => false,
+                    // Autres données de réponse que vous souhaitez inclure
+                ];
+
+                $questionData['responses'][] = $responseData;
+            }
+
+            $data['questions'][] = $questionData;
+        }
+
+        return $data;
+    }
+
+    private function getQuizById($id, EntityManagerInterface $entityManager): Quiz {
+        $quizRepository = $entityManager->getRepository(Quiz::class);
+        $quiz = $quizRepository->find($id);
+        if (!$quiz) {
+            throw $this->createNotFoundException(
+                'Aucun quiz ne correspond à l\'id  ' . $id
+            );
+        }
+        return $quiz;
+    }
+    
 }

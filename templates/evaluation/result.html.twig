@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EvaluationController!
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_evaluation_results.css') }}">
+{% endblock %}
+
+{% block body %}
+<h1>
+	Vous avez
+	{{ data.percentageCorrect }}% sur
+	{{ data.totalQuestions }}
+	questions.
+</h1>
+<h2>
+	Donc
+	{{ data.totalCorrectlyAnsweredQuestions }}
+	réponses correctes.
+</h2>
+{% for question in data.questions %}
+	<div>
+		<h3>{{ question.enonce }}</h3>
+		<ul>
+			{% for response in question.responses %}
+				<li class="{% if response.isCorrect %}correct{% elseif response.isChecked %}incorrect{% endif %}">
+					{% if response.isCorrect %}
+						<i class="fas fa-check-circle"></i>
+						{# Icône de coche verte pour les réponses correctes #}
+					{% elseif response.isChecked %}
+						<i class="fas fa-times-circle"></i>
+						{# Icône de croix rouge pour les réponses incorrectes #}
+					{% endif %}
+					{{ response.enonce }}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endfor %}
+
+{% endblock %}
+

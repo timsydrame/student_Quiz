@@ -48,3 +48,32 @@ a {
     color: #007bff;
     /* Couleur du texte du lien */
 }
+.correct {
+    color: green;
+    background: #00800054;
+}
+
+.incorrect {
+    color: red;
+    background: #ce2d2d54;
+}
+
+i {
+    margin-right: 5px;
+    /* Ajoute un peu d'espace à droite de l'icône */
+    font-size: 18px;
+    /* Ajuste la taille de l'icône */
+}
+
+li {
+    border: 1px solid #ddd;
+    /* Ajoute une bordure de 1 pixel avec une couleur grise à chaque réponse */
+    padding: 10px;
+    /* Ajoute un peu d'espacement intérieur pour un meilleur aspect */
+    margin-bottom: 5px;
+    /* Ajoute un peu d'espacement entre chaque réponse */
+}
+
+.footer {
+    position: sticky;
+}

@@ -26,28 +26,16 @@
 
 /* Style de la div contenant le tableau */
 .table-container {
-    width: auto;
+    width: 100%;
     /* margin-top: 20px; */
-    margin: -16px auto;
+    margin: 9px auto;
     border: solid 1px midnightblue;
     box-shadow: 0 4px 18px mediumblue;
     cursor: pointer;
 }
-
-/* Style du tableau */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-/* Style de l'en-tête du tableau */
-.table thead th {
-    background-color: #ede2e2;
-    border-bottom: 2px solid midnightblue;
-    padding: 8px;
-    font-size: 1.6rem;
-    text-align: left;
+/* Style des lignes impaires */
+.table tbody tr.odd {
+    background-color: rgb(166, 158, 223);
 }
 
 /* Style des lignes paires */
@@ -55,22 +43,50 @@
     background-color: #d6c7c7;
 }
 
-/* Style des lignes impaires */
-.table tbody tr.odd {
-    background-color: rgb(158, 151, 210);
+/* Style du tableau */
+
+/* Style du tableau pour les écrans mobiles */
+@media only screen and (max-width: 767px) {
+    .btn {
+        width: 100%;
+        /* Les boutons occupent 100% de la largeur */
+        margin-bottom: 10px;
+        /* Espace entre les boutons */
+    }
+
+    .table td,
+    .table th {
+        font-size: 1rem;
+        /* Taille de police réduite pour les cellules du tableau */
+        width: 100%;
+    }
+
+    .table-container {
+        margin: 10px;
+        /* Marge réduite pour le conteneur du tableau */
+    }
 }
 
-/* Style des cellules du tableau */
-.table td {
-    padding: 8px;
-    text-align: left;
-    font-size: 1.5rem;
+/* Style du tableau pour les écrans de bureau */
+@media only screen and (min-width: 768px) {
+    .table {
+        font-size: 1.5rem;
+        /* Taille de police plus grande pour les écrans de bureau */
+    }
+
+    .btn {
+        width: auto;
+        /* Rétablir la largeur automatique des boutons */
+    }
+
+    .table-container {
+        width: 90%;
+        /* Largeur spécifique pour le conteneur du tableau sur les écrans de bureau */
+        margin: 20px auto;
+        /* Marge centrée */
+    }
 }
 
-/* Style des boutons d'action */
-.btn {
-    margin-left: 10px;
-}
 
 
 
@@ -132,4 +148,5 @@ form button:hover {
 h1 {
     text-align: center;
 }
+
 

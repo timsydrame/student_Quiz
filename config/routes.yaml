@@ -8,9 +8,20 @@ controllers:
 #     methods: [POST]
 
 app_registration:
-    path: /inscription
+    path: /registration
     controller: App\Controller\RegistrationController::index
 
 app_home:  # Réparez l'indentation ici
     path: /home
     controller: App\Controller\HomeController::index
+
+home_page:
+    path: /
+    controller: App\Controller\HomePageController::index
+    methods: ['GET']
+
+    # la route par défaut
+app:
+    resource: '../src/Controller/'
+    type: annotation
+

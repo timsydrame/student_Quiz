@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Bienvenue sur Quiz-Up
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_home_page.css') }}">
+{% endblock %}
+
+
+{% block body %}
+	<main class="content">
+
+		<div class="card">
+
+			<div class="card-container">
+				<div class="card">
+					<img src="{{ asset('asset/AccueilImage.png') }}" alt="Image 1">
+
+				</div>
+
+
+				<div class="card">
+					<p>
+
+						<i class="fas fa-graduation-cap"></i>
+						<strong>Apprentissage interactif :</strong>
+						Quiz-Up propose des modules interactifs pour rendre l'apprentissage plus engageant.
+						<br>
+						<i class="fas fa-lightbulb"></i>
+						<strong>Expérience d'apprentissage engageante :</strong>
+						Découvrez des cours conçus pour stimuler votre curiosité et votre intérêt.
+						<br>
+						<i class="fas fa-funnel-dollar"></i>
+						<strong>Amusant et enrichissant :</strong>
+						Apprenez de manière ludique tout en consolidant vos connaissances.
+						<br>
+						<i class="fas fa-users"></i>
+						<strong>Communauté active :</strong>
+						Rejoignez une communauté d'apprenants passionnés et partagez vos connaissances.
+						<br>
+						<i class="fas fa-certificate"></i>
+						<strong>Attestations de réussite :</strong>
+						Obtenez des attestations pour valider vos compétences et vos accomplissements.
+					</p>
+				</div>
+
+			</div>
+			<div class="connectButon">
+				<a href="{{ path('app_login') }}" class="btn">Se connecter</a>
+
+				<a href="{{ path('app_registration') }}" class="btn">S'inscrire</a>
+			</div>
+		</main>
+
+
+	{% endblock %}
+

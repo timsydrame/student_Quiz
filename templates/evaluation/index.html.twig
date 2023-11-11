@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block title %}Passer le Quiz
+
+{% block title %}
+	Evaluation
 {% endblock %}
 {% block stylesheets %}
 	{{ encore_entry_link_tags('app') }}
@@ -9,30 +11,50 @@
 
 
 {% block body %}
-	<form method="post" action="{{ path('app_evaluation_submit', {'id': quiz.id}) }}">
-		{{ form_start(form) }}
 
-		<h2>Questions:</h2>
-		<ul>
-			{% for question in questions %}
-				<li>
-					{{ question.enonce }}
-					<ul>
-						{% for response in question.candidateResponses %}
-							<li>
-								<label>
-								<input type="checkbox" name="evaluation[responses][]" value="{{ response.id }}">
+{% set data = form.vars.value %}
 
-									{{ response.enoncer }}
-								</label>
-							</li>
-						{% endfor %}
-					</ul>
-				</li>
-			{% endfor %}
-		</ul>
+<form action="{{ path('app_evaluation_result') }}" method="POST" enctype="multipart/form-data">
+		
+		<input type="hidden" name="quiz_id" value="{{ data.id }}">
+		<h1>Quiz: {{ data.name }}</h1>
+		<input 
+			type="hidden" 
+			name=" quiz[id]" 
+			value="{{ data.id }}">
 
-		<button type="submit">Submit</button>
-	</form>
+		{% for question in data.questions %}
+
+				<div>
+					<h2>{{ question.enonce }}</h2>
+
+					<input 
+						type="hidden" 
+						name="questions[{{ question.id }}][enonce]" 
+						value="{{ question.enonce }}">
+
+				{% for response in question.responses %}
+					<div>
+						<label>
+							<input type="checkbox" value="true" name="questions[{{ question.id }}][responses][{{ response.id }}][isChecked]">
+							<i class="far fa-square"></i>
+							<!-- Case non cochée -->
+							<i class="fas fa-check-square"></i>
+							<!-- Case cochée -->
+							{{ response.enonce }}
+						</label>
+
+
+
+						<input type="hidden" name="questions[{{ question.id }}][responses][{{ response.id }}][enonce]" value="{{ response.enonce }}">
+						<input type="hidden" name="questions[{{ question.id }}][responses][{{ response.id }}][id]" value="{{ response.id }}">
+					</div>
+				{% endfor %}
+
+
+				</div>
+		{% endfor %}
+        
+	<button type="submit">Soumettre</button>
+</form>
 {% endblock %}
-

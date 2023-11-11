@@ -1,4 +1,13 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+	Bienvenue sur Quiz-Up
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_quizTest.css') }}">
+{% endblock %}
+
 
 {% block body %}
 	<h1>liste des quizs</h1>

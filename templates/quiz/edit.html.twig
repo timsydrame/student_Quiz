@@ -2,6 +2,12 @@
 {% block title %}Modifier Quiz!
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_quizTest.css') }}">
+{% endblock %}
+
+
 {% block body %}
 
 	<div
