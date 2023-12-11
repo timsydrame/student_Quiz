@@ -37,7 +37,6 @@ class EvaluationController extends AbstractController
             return $this->forward('App\Controller\EvaluationController::result', [
                 'data' => $data,
             ]);
-
         }
 
         return $this->render('evaluation/index.html.twig', [
@@ -50,7 +49,6 @@ class EvaluationController extends AbstractController
     public function result(Request $request, EntityManagerInterface $entityManager): Response 
     {
         // Get the submitted data from the request
-        //$formData = json_decode($request->request->get('questions'), true);
         $requestData = $request->request->all();
         $quizId = $requestData['quiz_id'];
         $questions = $requestData['questions'];
@@ -185,7 +183,7 @@ class EvaluationController extends AbstractController
             $questionData = [
                 'id' => $question->getId(),
                 'enonce' => $question->getEnonce(),
-                'responses' => [],  // Initialise un tableau pour stocker les réponses de la question
+                'responses' => [],  // Initialisation d'un tableau pour stocker les réponses de la question
             ];
 
             // Boucler sur les réponses pour les ajouter à la question
@@ -193,8 +191,7 @@ class EvaluationController extends AbstractController
                 $responseData = [
                     'id' => $response->getId(),
                     'enonce' => $response->getEnoncer(),
-                    'isChecked' => false,
-                    // Autres données de réponse que vous souhaitez inclure
+                    'isChecked' => false,                   
                 ];
 
                 $questionData['responses'][] = $responseData;

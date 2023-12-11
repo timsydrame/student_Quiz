@@ -32,7 +32,7 @@ header{
     left: 0;
     width: 100%;
     background-color: #f8f9fa;
-    border: 1px solid rgb(123, 96, 221);
+    border: 2px solid rgb(123, 96, 221);
     padding: 5px;
     text-align: center;
     z-index: 1000;
@@ -50,6 +50,7 @@ header{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 99%;
     z-index: 1000;
+    height: 150px;
 }
 
 .logo img {

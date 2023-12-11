@@ -1,6 +1,11 @@
 {% extends "base.html.twig" %}
 {% block title %}Mofifier Question!
 {% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/main_quizTest.css') }}">
+{% endblock %}
+
 
 {% block body %}
 	<div
@@ -22,6 +27,8 @@
 		<i class="fas fa-book"></i>
 		Ajouter une Réponse possible
 	</a>
+
+
 	<div class="table-container">
 		<table class="table">
 			<thead>

@@ -1,98 +1,40 @@
 
 
-/* Style pour le titre h1 */
-h1 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
+/* Nouveau style pour les questions et réponses sous forme de cartes */
 
-/* Style pour les questions */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-/* Style pour les réponses */
-label {
-    width: 99%;
-    display: block;
-    padding: 10px 20px;
-    border: 2.4px solid #42277d;
-    border-radius: 5px;
-    text-align: left;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-    /* Transition de couleur de fond */
-}
-
-/* Effet de survol pour les réponses */
-label:hover {
-    background-color: #f0f0f0;
-    /* Changer la couleur de fond au survol */
-}
-
-/* Style pour les boutons */
-button {
-    width: 100%;
-    background-color: #09294b;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-    /* Transition de couleur de fond */
-}
-
-/* Effet de survol pour le bouton */
-button:hover {
-    background-color: #071f3a;
-    /* Nouvelle couleur de fond au survol */
-}
-
-/* Style pour les liens de retour */
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-/* Style pour l'apparence personnalisée de la case à cocher */
-input[type="checkbox"]+label {
-    position: relative;
-    padding-left: 30px;
-    /* Espace pour l'icône de coche */
-    cursor: pointer;
-    display: inline-block;
-}
-
-/* Icône de coche personnalisée */
-input[type="checkbox"]+label::before {
-    content: '\2713';
-    /* Code Unicode pour une coche (vérifiez si cela convient à votre police) */
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 20px;
-    color: #3e1a80;
-    /* Couleur de la coche */
-    transition: color 0.3s ease;
-    /* Transition de couleur de la coche */
-}
-
-/* Style pour changer la couleur de la coche lorsqu'elle est cochée */
-input[type="checkbox"]:checked+label::before {
-    color: #149122;
-    /* Nouvelle couleur de la coche lorsqu'elle est cochée */
-}
-
-/* Ajouter de l'espace entre les questions */
-li {
+/* Style pour le conteneur des cartes de questions */
+.question-cards {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+}
+
+/* Style pour chaque carte de question */
+.question-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+/* Style pour le titre de la question */
+.question-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Style pour chaque réponse */
+.response {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+/* Effet de survol pour chaque réponse */
+.response:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
 }
 
 .footer {

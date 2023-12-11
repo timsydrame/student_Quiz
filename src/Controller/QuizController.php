@@ -24,7 +24,7 @@ class QuizController extends AbstractController
             $data[] = [
                 'id' => $quiz->getId(),
                 'name' => $quiz->getName(), // Ajoutez d'autres champs que vous souhaitez inclure
-                // ...
+              
             ];
         }
 

@@ -30,20 +30,18 @@
 						<td>{{ quiz.name }}</td>
 						<td>{{ quiz.description }}</td>
 						<td>
-							<a
-								href="{{ path('app_question', {'id': quiz.id}) }} " class="btn btn-primary">
+							<a href="{{ path('app_evaluation', {'id': quiz.id}) }}" class="btn btn-custom">
 								<i class="fas fa-play"></i>
-								Lire
+								{# Passer à l'évaluation #}
 							</a>
-
 							<a href="{{ path('app_quiz_edit', {'id': quiz.id}) }}" class="btn btn-warning">
 								<i class="fas fa-edit"></i>
-								Modifier
+								{# Modifier #}
 							</a>
 
 							<a href="{{ path('app_quiz_delete', {'id': quiz.id}) }}" class="btn btn-danger">
 								<i class="fas fa-trash"></i>
-								Supprimer
+								{# Supprimer #}
 							</a>
 						</td>
 					</tr>
